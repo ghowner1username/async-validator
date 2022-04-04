@@ -34,6 +34,21 @@ export * from './interface';
  *  for this schema.
  */
 class Schema {
+
+  // Code issue introduced - start
+  function getProp(object, propertyName, defaultValue) {
+  if (!object[propertyName]) {
+    return defaultValue;
+  }
+  return object[propertyName];
+}
+const hero = {
+  name: 'Batman',
+  isVillian: false
+};
+console.log(getProp(hero, 'name', 'Unknown'));     // => 'Batman'
+// Code issue introduced - end
+
   // ========================= Static =========================
   static register = function register(type: string, validator) {
     if (typeof validator !== 'function') {
